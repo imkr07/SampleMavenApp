@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker run --rm -v $HOME/.m2:/root/.m2 -v $WORKSPACE:/workspace -w /workspace maven:3.6.3-jdk-11 mvn clean install'
+                sh 'docker run --rm -v $HOME/.m2:/root/.m2 -v $WORKSPACE:/workspace -w /workspace maven:3.6.3-jdk-8 mvn clean install'
             }
         }
         stage('Test') {
             steps {
-                sh 'docker run --rm -v $HOME/.m2:/root/.m2 -v $WORKSPACE:/workspace -w /workspace maven:3.6.3-jdk-11 mvn cobertura:cobertura'
+                sh 'docker run --rm -v $HOME/.m2:/root/.m2 -v $WORKSPACE:/workspace -w /workspace maven:3.6.3-jdk-8 mvn cobertura:cobertura'
             }
         }
         stage('Publish Test Results') {
